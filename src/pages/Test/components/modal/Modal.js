@@ -6,7 +6,15 @@ import "./style.css";
 
 const Modal = ({ visible, setVisible }) => {
   const navigate = useNavigate();
-  const { point, accuracy, speed } = useTypingContext();
+  const {
+    point,
+    accuracy,
+    speed,
+    setSelectedTimer,
+    setSelectedWords,
+    setTimer,
+    setTypedValue,
+  } = useTypingContext();
   return (
     <div
       className="modal-foreground"
@@ -38,6 +46,10 @@ const Modal = ({ visible, setVisible }) => {
               <Button
                 text={"Close"}
                 onClick={() => {
+                  setSelectedTimer("");
+                  setSelectedWords("");
+                  setTimer("");
+                  setTypedValue("");
                   setVisible(false);
                   navigate("/");
                 }}

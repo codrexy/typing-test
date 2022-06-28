@@ -61,6 +61,7 @@ function Test() {
                 rows={13}
                 value={typedValue}
                 onChange={(e) => setTypedValue(e.target.value)}
+                onPaste={(e) => e.preventDefault()}
                 //   cols={50}
               />
             </div>

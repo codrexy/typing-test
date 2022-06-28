@@ -21,16 +21,16 @@ export default function TypingContextProvider({ children }) {
   const [selectedWords, setSelectedWords] = useState("");
   const [selectedTimer, setSelectedTimer] = useState("");
   const [typedValue, setTypedValue] = useState("");
-  const [point, setPoint] = useState();
-  const [accuracy, setAccuracy] = useState();
-  const [speed, setSpeed] = useState();
+  const [point, setPoint] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
+  const [speed, setSpeed] = useState(0);
   const [timer, setTimer] = useState(0);
 
   const submit = (listOfWords, setVisible) => {
-    if (selectedTimer > 0) {
-      setSelectedTimer(0);
-      return;
-    }
+    // if (selectedTimer > 0) {
+    //   setSelectedTimer(0);
+    //   return;
+    // }
     const typedValueArray = typedValue.toLowerCase().split(" ");
     const listOfWordsArray = listOfWords.toLowerCase().split(" ");
     let correctWords = [];
@@ -41,14 +41,11 @@ export default function TypingContextProvider({ children }) {
         }
       }
     }
-    // console.log(correctWords.length);
-    // console.log(listOfWordsArray.length);
-    // console.log(typedValueArray.length);
     const point = correctWords.length;
     const accuracy = `${Math.floor(
       (correctWords.length / listOfWordsArray.length) * 100
     )}%`;
-    const speed = `${Math.floor((typedValueArray.length / timer) * 100)}%`;
+    const speed = `Finished in ${timer - selectedTimer} seconds`;
     setAccuracy(accuracy);
     setPoint(point);
     setSpeed(speed);
